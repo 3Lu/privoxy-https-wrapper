@@ -1,0 +1,47 @@
+ProxHTTPSProxyMII
+=================
+
+Version 1.5 (20180616)
+--------------
+
++ SubjectAltNames support for DNS and IP
+- Leading '*' in commonname.
+*  Generated cert's Subject field still uses '*' due to some hosts using more characters than allowed. 
+   Example: 18cfdfd73150f69310ab-4d842a0601d0ae955a714605e7fb6d6f.ssl.cf2.rackcdn.com.
+
+Version 1.4 (20160112)
+--------------
+
++ Socks proxy support (needs urllib3 >= 1.14)
+* Certifications are now v3 instead of v1
+
+Version 1.3.1 (20151001)
+--------------
+
+* Certifications are now signed via SHA256 instead of SHA1
+
+Version 1.3 (20150114)
+--------------
+
++ Each request has a number ranged from 001 to 999 for reference. 000 is reserved for SSL requests not MITMed like those in [BLACKLIST] and [SSL Pass-Thru] sections.
++ Log window now displays the length of the bytes submitted in POST method
+
+Version 1.2 (20141221)
+--------------
+
++ Content is streamed to client, while not cached before sending
+* Fix config auto reload
+* Less exception traceback dumped
+* Tagged header changed from "Tagged:Proxomitron FrontProxy/*" to "Tagged:ProxHTTPSProxyMII FrontProxy/*"
+
+Version 1.1 (20141024)
+--------------
+
++ Support URL bypass
++ Handle both HTTP and HTTPS
++ Auto reload config upon chagnes
+
+Version 1.0 (20140729)
+--------------
+
+Initial release

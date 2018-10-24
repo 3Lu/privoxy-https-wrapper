@@ -1,0 +1,31 @@
+version: '3'
+services:
+
+  privoxy:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: eluminat001/privoxy
+    volumes:
+        - ./privoxy/user.action:/etc/privoxy/user.action
+        - ./privoxy/user.filter:/etc/privoxy/user.filter
+        - ./privoxy/config:/etc/privoxy/config
+    ports:
+      - 8118:8118
+    restart: always
+
+  proxywrapper:
+    build:
+      context: ./wrapper
+      dockerfile: Dockerfile
+    image: eluminat001/privoxy-https-wrapper
+    volumes:
+        - ./wrapper/cert/cacert.pem:/etc/ProxHTTPSProxy/cert/cacert.pem
+        - ./wrapper/cert/CA.crt:/etc/ProxHTTPSProxy/cert/CA.crt
+        - ./wrapper/config/config.ini:/etc/ProxHTTPSProxy/config/config.ini
+    ports:
+      - 8079:8079
+      - 8081:8081
+    links:
+     - privoxy
+    restart: always
